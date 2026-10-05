@@ -1,0 +1,573 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+
+body {
+	font-family: 'Pixelify Sans', sans-serif;
+	line-height: 1.5;
+    background-color: #FFE6F7;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23f4a7df' fill-opacity='0.68'%3E%3Cpath d='M0 38.59l2.83-2.83 1.41 1.41L1.41 40H0v-1.41zM0 1.4l2.83 2.83 1.41-1.41L1.41 0H0v1.41zM38.59 40l-2.83-2.83 1.41-1.41L40 38.59V40h-1.41zM40 1.41l-2.83 2.83-1.41-1.41L38.59 0H40v1.41zM20 18.6l2.83-2.83 1.41 1.41L21.41 20l2.83 2.83-1.41 1.41L20 21.41l-2.83 2.83-1.41-1.41L18.59 20l-2.83-2.83 1.41-1.41L20 18.59z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    color: #BE5985;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #EC7FA9;
+    color: #AC1754;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+	border-radius: 20px;
+}
+#menu-toggle {
+    font-size: 18px;
+    padding: 10px 15px;
+    background-color: #FFEDFA;
+    color: #BE5985;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 210px; 
+    z-index: 1000;
+    transition: left 0.3s ease-in-out;
+}
+
+.contenu {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #FFEDFA;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transition: left 0.3s ease-in-out;
+}
+
+.sidebar.hidden {
+    left: -200px;
+}
+
+
+.sidebar.hidden + #menu-toggle {
+    left: 200px;
+}
+
+.sidebar h2{
+	text-align: center;
+	color: #BE5985;
+}
+
+.sidebar ul{
+	list-style: none;
+	padding: 0;
+}
+
+.sidebar ul li{
+	padding: 5px 0;
+}
+
+.sidebar ul li a{
+	color: #BE5985;
+	display: block;
+	padding: 5px;
+	border-radius: 5px;
+}	
+
+	
+.content {
+	margin-left: 250px;
+	padding: 20px;
+	width: calc(100% - 250px);
+}
+
+.game-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 40px;
+	margin-top: 50px;
+}
+
+.game-button {
+	padding: 20px;
+	border-radius: 10px;
+	width: 200px;
+	text-align: center;
+	font-size: 18px;
+	font-size: bold;
+	color: #BE5985;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-button img {
+    width: 125px;
+    height: 100px;
+    border-radius: 10px;
+}
+.game-button:hover {
+	background-color: #ff1493;
+	color: white;
+}
+	
+
+footer {
+    text-align: center;
+    padding: 5px;
+    position: relative;
+    width: 100%;
+}
+
+button {
+	background-color: #EC7FA9;
+	text-align: center;
+	color: #BE5985;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+	
+}
+button:hover {
+    background-color: #ff1493;
+	color: white;
+}
+
+.player-symbol img {
+	width: 30px;
+	height:30px;
+}
+
+button img {
+    pointer-events: none; 
+}
+
+button.icon-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    outline: none;
+}
+button.icon-button img {
+    width: 100px;   
+    height: 100px;
+    object-fit: contain;
+    display: block;
+}
+
+/* Puissance4 Board */
+
+
+
+.grid-p4 {
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    grid-template-rows: repeat(6, 50px);
+    gap: 5px;
+    justify-content: center;
+    margin: 10px auto;
+    background-color: #FFB8E0;
+    padding: 10px;
+    border-radius: 20px;
+	width: 50%;
+	border: 2px solid #EC7FA9;
+}
+
+.grid-p4 .cell {
+    width: 50px;
+    height: 50px;
+    background-color: #FFEDFA;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: pointer;
+    border: 2px solid #EC7FA9;
+}
+
+/*gomoku board*/
+
+.grid-gomoku {
+	position: absolute;
+	display: grid;
+	grid-template-columns: repeat(19,30px);
+	grid-template-rows: repeat(19,30px);
+	justify-content: center;
+	margin: 50px auto;
+	background-color: #FFEDFA;
+	padding: 25px;
+	border-radius: 10px;
+	border: 3px solid #EC7FA9;
+}
+
+.grid-gomoku .cell {
+	width: 30px;
+	height: 30px;
+	display: flex;
+	justify-content:center;	
+	position: relative;
+	border: 1px solid #EC7FA9;
+	box-sizing: border-box; 
+
+}
+.piece {
+    width: 24px;  
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none; 
+}
+
+.piece.highlight {
+    animation: glow 0.5s infinite alternate;
+}
+
+@keyframes glow {
+    0% {
+        filter: brightness(1);
+    }
+    100% {
+        filter: brightness(1.8);
+    }
+}
+
+
+
+
+#titre-morpion{
+    font-size: 34px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    color: #BE5985; /* Màu hồng đậm */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 5px rgba(255, 105, 180, 0.3);
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif; /* Font mềm mại hơn */
+}
+
+/* === Game container === */
+.game-container {
+    width: 50%;  /* Giới hạn chiều rộng */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    margin: 50px auto; /* Căn giữa màn hình */
+	background-color: #ffe6f2 ; 
+}
+
+/* === Bảng Morpion === */
+#morpion-board {
+    border-collapse: collapse;
+	margin: 20px auto;
+}
+
+#morpion-board td {
+    width: 80px; /* Kích thước nhỏ hơn */
+    height: 80px;
+    border: 1.5px solid #ff99cc; /* Viền hồng pastel */
+    text-align: center;
+    font-size: 40px; /* Kích thước nhỏ hơn */
+    font-weight: normal;
+    cursor: pointer;
+    background-color: #fff5fa; /* Nền trắng hồng nhẹ */
+    color: #ff66b2; /* X, O có màu hồng */
+    font-family: 'Poppins', sans-serif; /* Font mềm mại hơn */
+}
+
+/* Hover khi di chuột vào ô */
+#morpion-board td:hover {
+    background-color: #ffccdd; /* Màu hồng nhạt khi hover */
+}
+
+/* === Phần giới thiệu người chơi === */
+.player-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* === Thông tin từng người chơi === */
+.player {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Giữ khoảng cách đều */
+}
+
+/* === Biểu tượng X & O === */
+.player-symbol {
+    font-size: 30px;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+}
+
+/* Màu riêng cho X và O */
+.player-x {
+    color: #ff6699; /* Hồng nhạt */
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.player-o {
+    color: #ff99cc; /* Hồng pastel */
+    font-size: 28px;
+    font-weight: normal;
+}
+
+.player-name {
+    font-size: 18px;
+    color: #BE5985;
+}
+
+
+.morpion-buttons {
+    display: flex;
+    gap: 10px;
+    background-color: #F7CFD8	; 
+    padding: 10px;
+    border-radius: 12px;
+    width: fit-content;
+}
+
+/* === Đảm bảo Reset & Pause không có nền màu === */
+.morpion-buttons button {
+    background: transparent !important; /* Xóa nền */
+    border: none !important; /* Xóa viền */
+    padding: 0;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Kích thước icon */
+.morpion-buttons img {
+    width: 100px;
+    height: 100px;
+    transition: 0.3s;
+}
+
+/* Hiệu ứng hover */
+.morpion-buttons button:hover img {
+    transform: scale(1.1);
+    opacity: 0.6;
+}
+.resize-img {
+	width: 30px;
+	height: 30px;
+    margin-right: 5px; /* Tạo khoảng cách giữa ảnh và số */
+    vertical-align: middle; /* Đảm bảo nó nằm cùng dòng với số */
+}
+.timer {
+  display: flex;
+  justify-content: center;  /* căn giữa ngang */
+  align-items: center;      /* căn giữa dọc */
+  margin: 12px 0;
+  color: #ff66b2; /* Màu hồng pastel */
+}
+#game-timer {
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+/* === Nút Skip khi tạm dừng === */
+.skip-btn {
+    background: #ff66b2;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: 0.3s;
+}
+
+.skip-btn:hover {
+    background: #ff3385;
+}
+
+
+/*=====================================================================================================*/
+/*motpion.html*/
+/* === Phần chọn mode du jeu (bảng ở giữa) === */
+/* === Fullscreen container cho modal === */
+.fullscreen-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* === Hộp chọn chế độ === */
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+	background-color: #FFEBF2 ;
+}
+
+/* === Ảnh demo trò chơi === */
+.game-demo {
+    width: 50%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* === Nút chọn chế độ === */
+.mode-selection {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+}
+
+.mode-btn {
+    background: #ff99cc;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+    transition: 0.3s;
+}
+
+.mode-btn:hover {
+    background: #ff66b2;
+}
+
+/* === Nút Start (mặc định disabled) === */
+#start-btn {
+    display: inline-block;
+    background: gray;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    /*cursor: not-allowed;*/
+}
+
+#start-btn.enabled {
+    background: #ff66b2;
+    cursor: pointer;
+}
+
+#start-btn.enabled:hover {
+    background: #ff3385;
+}
+
+
+
+
+/**page customize**/
+.custom-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #FFCCE1;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #FF748B;
+}
+
+.custom-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+.custom-container label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: bold;
+}
+
+select, input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.icon-select {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.icon-option {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 4px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background-color: #FFF8E3;
+}
+
+.icon-option:hover {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+.icon-option img {
+  width: 48px;
+  height: 48px;
+}
+
+.icon-option.selected {
+  border-color: #ff66cc;
+  background-color: #FF90BC;
+}
+
+.player-icon-group {
+  margin-bottom: 20px;
+}
+
+#game-board {
+  display: grid;
+  gap: 2px;
+  background-color: #FFB8E0; 
+  margin: auto;
+  padding: 10px;
+}

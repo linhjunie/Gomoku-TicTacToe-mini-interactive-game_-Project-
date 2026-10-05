@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gomoku - Jeu</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="gomoku.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="contenu">
+        <aside class="sidebar" id="sidebar">
+			<button id="menu-toggle">☰</button>
+            <h2>Menu</h2>
+            <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+        <li><a href="morpion.html"><i class="fas fa-gamepad"></i> Morpion</a></li>
+        <li><a href="puissance4_start.html"><i class="fas fa-th"></i> Puissance 4</a></li>
+        <li><a href="gomoku_start.html"><strong><i class="fas fa-chess-board"></i> Gomoku</strong></a></li>
+        <li><a href="customize.html"><i class="fas fa-cog"></i> Créer un tournoi</a></li>
+            </ul>
+        </aside>
+		<main class="content">
+			<h1>Gomoku</h1>
+			<p> Alignez 5 pions consécutifs pour gagner </p>
+	        <div class="player-info">
+            <div class="player">
+                <span class="player-symbol"><img src="image/cat.png"></span>
+                <span class="player-name">Cat</span>
+            </div>
+			
+			<div class="timer">
+			    <span id="game-timer"><img src="image/timer.png" class="resize-img">00:00</span>
+			</div>			
+			
+            <div class="player">
+                <span class="player-symbol"><img src="image/chick.png"></span>
+                <span class="player-name">Chick</span>
+            </div>
+			</div>
+			<div id="game-boardG" class="grid-gomoku"></div>
+			<p id="game-status"></p>
+			
+			<div class="morpion-buttons">
+
+				<button onclick="resetGame()" class="icon-button">
+					<img src="image/reset.png" alt="Reset">
+				</button>
+				<button onclick="Pause()" id="pause-button" class="icon-button">
+					<img src="image/pause.png" alt="Pause">
+				</button>
+			</div>
+		</main>
+	</div>
+	<footer>
+		<p> 2025 Jeux en Ligne </p>
+	</footer>
+	<script>
+document.getElementById("menu-toggle").addEventListener("click", function () {
+    let sidebar = document.getElementById("sidebar");
+
+    if (sidebar.classList.contains("hidden")) {
+        sidebar.classList.remove("hidden");
+    } else {
+        sidebar.classList.add("hidden");
+    }
+});
+
+	</script>
+</body>
+</html>

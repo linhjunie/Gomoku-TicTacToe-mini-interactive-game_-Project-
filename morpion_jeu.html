@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeu de Morpion</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="fullscreen-container">
+    <div class="game-container">
+      <h2 id="titre-morpion">Tic Tac Toe</h2>
+	  
+
+		<div class="player-info" id="player-info"></div>
+		
+		<div class="timer">
+			<span id="game-timer">
+				<img src="image/timer.png" class="resize-img">00:20
+			</span>
+		</div>
+
+
+      <table id="morpion-board"></table>
+
+		<div class="morpion-buttons">
+			<button id="reset-btn">
+				<img src="image/reset.png" alt="Reset">
+			</button>
+			<button id="pause-btn">
+				<img src="image/pause.png" alt="Pause">
+			</button>
+		</div>
+    </div>
+  </div>
+
+  <!-- Script logic -->
+  <script src="morpion_jeu.js"></script>
+</body>
+</html>

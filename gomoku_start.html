@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux de Morpion, Puissance 4, Gomoku</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="contenu">
+        <aside class="sidebar" id="sidebar">
+            <button id="menu-toggle">☰</button>
+            <h2> Menu </h2>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="morpion.html"><i class="fas fa-gamepad"></i> Morpion</a></li>
+                <li><a href="puissance4_start.html"><i class="fas fa-th"></i> Puissance 4</a></li>
+                <li><a href="gomoku_start.html"><strong><i class="fas fa-chess-board"></i> Gomoku</strong></a></li>
+                <li><a href="customize.html"><i class="fas fa-cog"></i> Créer un tournoi</a></li>
+            </ul>
+        </aside>
+
+        <div class="fullscreen-container">
+            <div class="modal-content">
+                <h2>Choisissez le mode de jeu</h2>
+                <img src="image/gomoku.jpg" alt="gomoku" class="game-demo">
+
+                <div class="mode-selection">
+                    <button class="mode-btn" onclick="startGame('pvp')">Jouer avec un ami</button>
+                    <button class="mode-btn" onclick="startGame('pvc')">Jouer avec ordinateur</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>2025 Jeux en Ligne</p>
+    </footer>
+
+    <script>
+        // Menu toggle
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            let sidebar = document.getElementById("sidebar");
+            sidebar.classList.toggle("hidden");
+        });
+
+        // Démarrer jeu avec mode sélectionné
+        function startGame(mode) {
+            window.location.href = `gomoku_jeu.html?mode=${mode}`;
+        }
+    </script>
+</body>
+</html>

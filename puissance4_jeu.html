@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Puissance 4 - Jeu</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="puissance4.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="contenu">
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <button id="menu-toggle">☰</button>
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+        <li><a href="morpion.html"><i class="fas fa-gamepad"></i> Morpion</a></li>
+        <li><a href="puissance4_start.html"><strong><i class="fas fa-th"></i> Puissance 4</strong></a></li>
+        <li><a href="gomoku_start.html"><i class="fas fa-chess-board"></i> Gomoku</a></li>
+        <li><a href="customize.html"><i class="fas fa-cog"></i> Créer un tournoi</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main game -->
+    <main class="content">
+      <h1>Puissance 4</h1>
+      <p>Alignez 4 jetons de la même couleur pour gagner !</p>
+
+      <!-- Player Info -->
+      <div id="player-info" class="player-info"></div>
+
+      <!-- Timer -->
+      <div class="timer">
+        <span id="game-timer">
+          <img src="image/timer.png" class="resize-img">00:20
+        </span>
+      </div>
+
+      <!-- Game Board -->
+      <div id="game-board" class="grid-p4"></div>
+      <p id="game-status"></p>
+
+      <!-- Buttons -->
+      <div class="morpion-buttons">
+        <button onclick="resetGame()" class="icon-button">
+          <img src="image/reset.png" alt="Reset" />
+        </button>
+        <button onclick="Pause()" id="pause-button" class="icon-button">
+          <img src="image/pause.png" alt="Pause" id="pause-icon"/>
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>2025 Jeux en Ligne</p>
+  </footer>
+
+  <!-- Menu toggle -->
+  <script>
+    document.getElementById("menu-toggle").addEventListener("click", () => {
+      document.getElementById("sidebar").classList.toggle("hidden");
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const playerCount = parseInt(params.get("players")) || 2;
+      const defaultIcons = ["cat.png", "chick.png", "pig.png", "panda.png"];
+      const playerInfo = document.getElementById("player-info");
+      playerInfo.innerHTML = "";
+
+      for (let i = 1; i <= playerCount; i++) {
+        const icon = params.get(`icon${i}`) || defaultIcons[i - 1];
+        const player = document.createElement("div");
+        player.className = "player";
+
+        const symbol = document.createElement("span");
+        symbol.className = "player-symbol";
+        symbol.innerHTML = `<img src="image/${icon}" width="32">`;
+
+        const name = document.createElement("span");
+        name.className = "player-name";
+        name.textContent = `Joueur ${i}`;
+
+        player.appendChild(symbol);
+        player.appendChild(name);
+        playerInfo.appendChild(player);
+      }
+    });
+  </script>
+</body>
+</html>

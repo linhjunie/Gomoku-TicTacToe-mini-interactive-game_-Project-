@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux de Morpion, Puissance 4, Gomoku</title>
+    <link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+
+</head>
+<body>
+	<audio id="bg-music" src="music/music.mp3" loop autoplay></audio>
+	<div class="contenu">
+		<aside class="sidebar" id="sidebar">
+			<button id="menu-toggle">☰</button>
+			<h2> Menu </h2>
+			<ul>
+        <li><a href="index.html"><strong><i class="fas fa-home"></i> Accueil</strong></a></li>
+        <li><a href="morpion.html"><i class="fas fa-gamepad"></i> Morpion</a></li>
+        <li><a href="puissance4_start.html"><i class="fas fa-th"></i> Puissance 4</a></li>
+        <li><a href="gomoku_start.html"><i class="fas fa-chess-board"></i> Gomoku</a></li>
+        <li><a href="customize.html"><i class="fas fa-cog"></i> Créer un tournoi</a></li>
+            </ul>
+        </aside>			
+		
+		<main class="content">
+			<header>
+			<h1> Bienvenue sur la plateforme de jeux de LH  </h1>
+			</header>
+			<section id="presentation">
+                <h2>Présentation des jeux</h2>
+                <p>Choisissez un jeu et commencez à jouer contre un autre joueur ou contre l'ordinateur.</p>
+                <div class="game-buttons">
+                    <a href="morpion.html" class="game-button">
+						<img src="image/morpion.jpg" alt="Morpion">
+                        <p>MORPION</p>
+                    </a>
+                    <a href="puissance4_start.html" class="game-button">
+                        <img src="image/puissance4.jpg" alt="Puissance 4">
+                        <p>PUISSANCE 4</p>
+                    </a>
+                    <a href="gomoku_start.html" class="game-button">
+                        <img src="image/gomoku.jpg" alt="Gomoku">
+                        <p>GOMOKU</p>
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+	<footer>
+		<p> 2025 Jeux en Ligne </p>
+	</footer>
+	<script>
+document.getElementById("menu-toggle").addEventListener("click", function () {
+    let sidebar = document.getElementById("sidebar");
+
+    if (sidebar.classList.contains("hidden")) {
+        sidebar.classList.remove("hidden");
+    } else {
+        sidebar.classList.add("hidden");
+    }
+});
+	
+	const bgMusic = document.getElementById("bg-music");
+    document.addEventListener("click", () => {
+        if (bgMusic.paused) {
+            bgMusic.play();
+        }
+    });
+
+	</script>
+</body>
+</html>

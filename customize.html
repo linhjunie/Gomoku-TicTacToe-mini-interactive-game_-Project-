@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Créer un tournoi personnalisé</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <audio id="bg-music" src="music/music.mp3" loop autoplay></audio>
+
+  <div class="contenu">
+    <aside class="sidebar" id="sidebar">
+      <button id="menu-toggle">☰</button>
+      <h2>Menu</h2>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-home"></i> Accueil</a></li>
+        <li><a href="morpion.html"><i class="fas fa-gamepad"></i> Morpion</a></li>
+        <li><a href="puissance4_start.html"><i class="fas fa-th"></i> Puissance 4</a></li>
+        <li><a href="gomoku_start.html"><i class="fas fa-chess-board"></i> Gomoku</a></li>
+        <li><a href="customize.html"><strong><i class="fas fa-cog"></i> Créer un tournoi</strong></a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <div class="custom-container">
+        <h2>Créer votre partie</h2>
+
+        <label for="gameType">Choisissez un jeu:</label>
+        <select id="gameType">
+          <option value="morpion">Morpion</option>
+          <option value="puissance4">Puissance 4</option>
+          <option value="gomoku">Gomoku</option>
+        </select>
+
+        <label for="rows">Nombre de lignes:</label>
+        <input type="number" id="rows" min="3" max="20" value="6">
+
+        <label for="cols">Nombre de colonnes:</label>
+        <input type="number" id="cols" min="3" max="20" value="7">
+
+        <label for="playerCount">Nombre de joueurs:</label>
+        <input type="number" id="playerCount" min="2" max="4" value="2">
+
+        <div id="iconSelections"></div>
+
+        <button onclick="startCustomGame()">Lancer le jeu</button>
+      </div>
+    </main>
+  </div>
+
+  <script>
+  const iconList = ["cat.png", "chick.png", "pig.png", "panda.png"];
+  const iconSelectionsDiv = document.getElementById("iconSelections");
+
+  document.getElementById("menu-toggle").addEventListener("click", () => {
+    document.getElementById("sidebar").classList.toggle("hidden");
+  });
+
+  document.getElementById("playerCount").addEventListener("input", generateIconSelectors);
+
+  document.getElementById("gameType").addEventListener("change", () => {
+    const game = document.getElementById("gameType").value;
+    const playerCountInput = document.getElementById("playerCount");
+
+    if (game === "gomoku") {
+      playerCountInput.max = 2;
+      if (parseInt(playerCountInput.value) > 2) {
+        playerCountInput.value = 2;
+      }
+    } else {
+      playerCountInput.max = 4;
+    }
+
+    generateIconSelectors(); // cập nhật lại chọn icon
+  });
+
+  function generateIconSelectors() {
+    const count = parseInt(document.getElementById("playerCount").value);
+    iconSelectionsDiv.innerHTML = "";
+
+    for (let i = 1; i <= count; i++) {
+      const group = document.createElement("div");
+      group.className = "player-icon-group";
+      const label = document.createElement("label");
+      label.innerText = `Joueur ${i}:`;
+      const wrapper = document.createElement("div");
+      wrapper.className = "icon-select";
+      wrapper.dataset.player = i;
+
+      iconList.forEach(icon => {
+        const option = document.createElement("div");
+        option.className = "icon-option";
+        option.innerHTML = `<img src="image/${icon}" alt="${icon}">`;
+        option.dataset.value = icon;
+        option.addEventListener("click", () => {
+          wrapper.querySelectorAll(".icon-option").forEach(el => el.classList.remove("selected"));
+          option.classList.add("selected");
+        });
+        if (icon === iconList[i - 1]) option.classList.add("selected");
+        wrapper.appendChild(option);
+      });
+
+      group.appendChild(label);
+      group.appendChild(wrapper);
+      iconSelectionsDiv.appendChild(group);
+    }
+  }
+
+  function startCustomGame() {
+    const game = document.getElementById("gameType").value;
+    const rows = document.getElementById("rows").value;
+    const cols = document.getElementById("cols").value;
+    const players = document.getElementById("playerCount").value;
+
+    if (players < 2) {
+      alert("Il faut au moins 2 joueurs !");
+      return;
+    }
+
+    let url = `${game}_jeu.html?rows=${rows}&cols=${cols}&players=${players}`;
+    for (let i = 1; i <= players; i++) {
+      const group = document.querySelector(`.icon-select[data-player="${i}"]`);
+      const selected = group.querySelector(".icon-option.selected");
+      const icon = selected ? selected.dataset.value : iconList[i - 1];
+      url += `&icon${i}=${encodeURIComponent(icon)}`;
+    }
+
+    window.location.href = url;
+  }
+
+  const bgMusic = document.getElementById("bg-music");
+  document.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play();
+    }
+  });
+
+  generateIconSelectors(); // Initial load
+</script>
+
+</body>
+</html>
